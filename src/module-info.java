@@ -4,5 +4,5 @@
 /**
  * 
  */
-module training {
+module training_program {
 }
