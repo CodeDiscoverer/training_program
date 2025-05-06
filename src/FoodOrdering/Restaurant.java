@@ -1,12 +1,12 @@
 package FoodOrdering;
 
-import FoodOrdering.screen.RestaurentScreen;
+import FoodOrdering.screen.RestaurantScreen;
 
-public class Restaurent {
+public class Restaurant {
 
 	public static void main(String[] args) {
 		
-		RestaurentScreen screen = new RestaurentScreen();
+		RestaurantScreen screen = new RestaurantScreen();
 		
 		screen.homeScreen();
 

@@ -3,11 +3,11 @@ package FoodOrdering.screen;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import FoodOrdering.services.RestaurentServiceController;
+import FoodOrdering.services.RestaurantServiceController;
 
-public class RestaurentScreen {
+public class RestaurantScreen {
 	
-	RestaurentServiceController service = new RestaurentServiceController();
+	RestaurantServiceController service = new RestaurantServiceController();
 	Scanner read = new Scanner(System.in);
 	
 	int choice;

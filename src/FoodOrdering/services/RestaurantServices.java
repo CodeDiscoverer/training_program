@@ -1,6 +1,6 @@
 package FoodOrdering.services;
 
-public interface RestaurentServices {
+public interface RestaurantServices {
 	
 	public void addDish();
 	public void viewMenuList();

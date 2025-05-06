@@ -8,7 +8,7 @@ import java.util.Scanner;
 import FoodOrdering.model.Menu;
 import FoodOrdering.model.Menu.Dish;
 
-public class RestaurentServiceController extends Thread implements RestaurentServices {
+public class RestaurantServiceController extends Thread implements RestaurantServices {
 	
 	Scanner read = new Scanner(System.in);
 	
