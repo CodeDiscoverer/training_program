@@ -1,5 +1,7 @@
 package customException.model;
 
+import customException.utils.Constants;
+
 public class Account {
 	
 	private long accountNo;
@@ -7,7 +9,7 @@ public class Account {
 	private String accountHolderDOB;
 	private String accountHolderNo;
 	private String accountPin;
-	private double minimumBalanceLimit = 500;
+	private double minimumBalanceLimit = Constants.defaultAccountMinimumBalance;
 	private double currentBalance;
 	
 	public long getAccountNo() {
