@@ -9,7 +9,7 @@ import customException.model.Account;
 import customException.view.AccountView;
 
 
-public class AccountServiceController implements AccountService{
+public class AccountServiceController extends Thread implements AccountService{
 	
 	Scanner read = new Scanner(System.in);
 	
@@ -39,7 +39,10 @@ public class AccountServiceController implements AccountService{
 			account.get(accountNoSerial).setAccountHolderNo(number);
 			account.get(accountNoSerial).setAccountPin(pin);
 			account.get(accountNoSerial).setAccountNo(accountNoSerial);
-			
+			System.out.println("Hang on tight your account is creating...");
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {}
 			System.out.println("Account Created Successfully!");
 			System.out.println("Account No: " + accountNoSerial);
 			accountNoSerial++;
@@ -57,7 +60,10 @@ public class AccountServiceController implements AccountService{
 				double balance = account.get(accountNo).getCurrentBalance();
 				
 				balance += depositAmount;
-				
+				System.out.println("Transaction is Processing...");
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {}
 				account.get(accountNo).setCurrentBalance(balance);
 			}
 			else {
@@ -76,6 +82,7 @@ public class AccountServiceController implements AccountService{
 		
 		double currentBalance = account.get(accountNumber).getCurrentBalance();
 		double minimumLimit =  account.get(accountNumber).getMinimumBalanceLimit();
+		
 		try {
 			if((currentBalance > withdrawAmount) && (minimumLimit >= (currentBalance-withdrawAmount)) ) {
 				throw new Exception("Transaction Declined! Insufficient Balance");
@@ -86,6 +93,10 @@ public class AccountServiceController implements AccountService{
 				String pin = account.get(accountNumber).getAccountPin();
 				
 				if(enteredPIN.equals(pin)) {
+					System.out.println("Transaction is Processing...");
+					try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e) {}
 					account.get(accountNumber).setCurrentBalance(currentBalance-withdrawAmount);
 					System.out.println("Transaction Successfully Completed!");
 				}
