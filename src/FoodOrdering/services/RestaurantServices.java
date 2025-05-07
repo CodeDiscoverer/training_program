@@ -6,4 +6,5 @@ public interface RestaurantServices {
 	public void viewMenuList();
 	public void orderFood();
 	public void bill();
+	public void pay();
 }

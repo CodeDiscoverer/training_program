@@ -13,7 +13,7 @@ public class AccountServiceController extends Thread implements AccountService{
 	
 	Scanner read = new Scanner(System.in);
 	
-	Map<Long, Account> account = new HashMap<>();
+	public Map<Long, Account> account = new HashMap<>();
 	Map<String, Long> accountExist = new HashMap<>();
 	AccountView page = new AccountView();
 	long accountNoSerial = 202504001;
@@ -65,6 +65,7 @@ public class AccountServiceController extends Thread implements AccountService{
 					Thread.sleep(2000);
 				} catch (InterruptedException e) {}
 				account.get(accountNo).setCurrentBalance(balance);
+				System.out.println("Transaction Successfully Completed!");
 			}
 			else {
 				throw new Exception("Deposit Amount Can't be 0 or Minus Value");

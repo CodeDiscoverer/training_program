@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import FoodOrdering.services.RestaurantServiceController;
+import bankFood.Main;
 
 public class RestaurantScreen {
 	
@@ -29,7 +30,7 @@ public class RestaurantScreen {
 				case 2 -> service.orderFood();
 				case 3 -> service.viewMenuList();
 				case 4 -> service.bill();
-				case 0 -> System.err.println("Thank You! Kindly Visit Us Again...");
+				case 0 -> Main.bankFood();
 				default -> System.err.println("Oops! Invalid Choice...");
 				}
 				

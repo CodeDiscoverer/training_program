@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import FoodOrdering.model.Menu;
 import FoodOrdering.model.Menu.Dish;
+import customException.controller.AccountServiceController;
 
 public class RestaurantServiceController extends Thread implements RestaurantServices {
 	
@@ -38,8 +39,7 @@ public class RestaurantServiceController extends Thread implements RestaurantSer
 			
 			System.out.print("Enter the " + dishName + " Price: ");
 			double dishPrice = read.nextDouble();
-			
-			Menu.menuList.add(new Dish(dishId, dishName, dishPrice));
+						Menu.menuList.add(new Dish(dishId, dishName, dishPrice));
 			
 		}catch (InputMismatchException e) {
 			read.next();
@@ -95,16 +95,42 @@ public class RestaurantServiceController extends Thread implements RestaurantSer
 	@Override
 	public void bill() {
 		
-		System.out.println("Your Bill is Generating...");
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {	}
-		System.out.println("Your Bill is Generated");
+		if(billAmount > 0) {
+			System.out.println("Your Bill is Generating...");
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {	}
+			System.out.println("Your Bill is Generated");
+			
+			System.out.println("%%%%%%%%%% PROGRAMMERS RESTAURENT %%%%%%%%%%");
+			orderedList.forEach(System.out::println);
+			System.out.println("\n\tTotal Bill Amount: " + billAmount);
+			System.out.println("-------------------------------------");
+			System.out.print("Payment Options\n1. Net Banking\n2. Cash\nPress other Number to Exit\nEnter your Choice: ");
+			int paymentOption = read.nextInt();
+			switch(paymentOption) {
+			case 1 : pay(); break;
+			case 2 : System.out.print("Enter the amount received: "); 
+			System.out.println("Remaining Amount: " + (read.nextInt() - billAmount));
+			}
+		}else {
+			System.out.println("You Haven't Ordered Anything...");
+		}
+	}
+
+	@Override
+	public void pay() {
+		AccountServiceController service = new AccountServiceController();
 		
-		System.out.println("%%%%%%%%%% PROGRAMMERS RESTAURENT %%%%%%%%%%");
-		orderedList.forEach(System.out::println);
-		System.out.println("\n\tTotal Bill Amount: " + billAmount);
+		System.out.print("Enter Account No: ");
+		long accountNumber = read.nextLong();
 		
+		if(service.account.get(accountNumber) != null) {
+			service.withdraw(accountNumber, billAmount);
+		}
+		else {
+			System.out.println("log: 128/training_program/src/FoodOrdering/services/RestaurantServiceController.java");
+		}
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import customException.controller.AccountServiceController;
+import bankFood.Main;
 
 public class AccountView {
 	
@@ -18,20 +19,25 @@ public class AccountView {
 			try {
 				choice = read.nextInt();
 				
-				if(choice == 1) {
-					service.createAccount();
-				}
-				
-				else if(choice == 2) {
-					service.transact();
+				if(choice != 0) {
+					if(choice == 1) {
+						service.createAccount();
+					}
 					
-				}
-				
-				else if(choice == 3) {
-					service.displayAllAccountStats();
+					else if(choice == 2) {
+						service.transact();
+						
+					}
+					
+					else if(choice == 3) {
+						service.displayAllAccountStats();
+					}
+					else {
+						System.err.println("Oops! Invalid Choice...");
+					}
 				}
 				else {
-					System.err.println("Oops! Invalid Choice...");
+					Main.bankFood();
 				}
 			}catch (InputMismatchException e) {
 				read.next();
