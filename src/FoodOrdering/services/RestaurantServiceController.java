@@ -5,7 +5,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-import FoodOrdering.model.Menu;
+import FoodOrdering.model.Menu; 
 import FoodOrdering.model.Menu.Dish;
 import customException.controller.AccountServiceController;
 
@@ -102,10 +102,10 @@ public class RestaurantServiceController extends Thread implements RestaurantSer
 			} catch (InterruptedException e) {	}
 			System.out.println("Your Bill is Generated");
 			
-			System.out.println("%%%%%%%%%% PROGRAMMERS RESTAURENT %%%%%%%%%%");
+			System.out.println("\n%%%%%%%%%% PROGRAMMERS RESTAURENT %%%%%%%%%%");
 			orderedList.forEach(System.out::println);
 			System.out.println("\n\tTotal Bill Amount: " + billAmount);
-			System.out.println("-------------------------------------");
+			System.out.println("-------------------------------------\n");
 			System.out.print("Payment Options\n1. Net Banking\n2. Cash\nPress other Number to Exit\nEnter your Choice: ");
 			int paymentOption = read.nextInt();
 			switch(paymentOption) {
@@ -125,12 +125,12 @@ public class RestaurantServiceController extends Thread implements RestaurantSer
 		System.out.print("Enter Account No: ");
 		long accountNumber = read.nextLong();
 		
-		if(service.account.get(accountNumber) != null) {
+		if(AccountServiceController.account.get(accountNumber) != null) {
 			service.withdraw(accountNumber, billAmount);
+			orderedList.clear();
+			billAmount = 0;
 		}
-		else {
-			System.out.println("log: 128/training_program/src/FoodOrdering/services/RestaurantServiceController.java");
-		}
+
 	}
 
 }

@@ -13,7 +13,7 @@ public class AccountServiceController extends Thread implements AccountService{
 	
 	Scanner read = new Scanner(System.in);
 	
-	public Map<Long, Account> account = new HashMap<>();
+	public static Map<Long, Account> account = new HashMap<>();
 	Map<String, Long> accountExist = new HashMap<>();
 	AccountView page = new AccountView();
 	long accountNoSerial = 202504001;
@@ -158,23 +158,24 @@ public class AccountServiceController extends Thread implements AccountService{
 						System.out.print("\n1. Deposit\n2. Withdraw\n3. Check Balance\nPress 0 to Exit\nEnter your choice: ");
 						choice1 = read.nextInt();
 						
-						if(choice1 == 1) {
-							System.out.print("Enter the amount to Deposit: ");
-							double amount = read.nextDouble();
-							deposit(accountNumber, amount);
+						if(choice1 != 0) {
+							if(choice1 == 1) {
+								System.out.print("Enter the amount to Deposit: ");
+								double amount = read.nextDouble();
+								deposit(accountNumber, amount);
+							}
+							else if(choice1 == 2) {
+								System.out.print("Enter the amount to Withdraw: ");
+								double amount = read.nextDouble();
+								withdraw(accountNumber, amount);
+							}
+							else if(choice1 == 3) {
+								displayBalance(accountNumber);
+							}
+							else {
+								System.err.println("Invalid Choice...");
+							}
 						}
-						else if(choice1 == 2) {
-							System.out.print("Enter the amount to Withdraw: ");
-							double amount = read.nextDouble();
-							withdraw(accountNumber, amount);
-						}
-						else if(choice1 == 3) {
-							displayBalance(accountNumber);
-						}
-						else {
-							System.err.println("Invalid Choice...");
-						}
-						
 					}while(choice1 != 0);
 					
 				}catch (InputMismatchException e) {
